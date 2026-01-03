@@ -21,6 +21,27 @@ public class JavaCup {
         }
     }
 
+    /**
+     * Original inefficient method (replaced by tempOptimized)
+     * This method used ArrayList which caused boxing/unboxing overhead
+     * and excessive memory allocation due to dynamic resizing.
+     * 
+     * Original code:
+     * public static void temp() {
+     *     ArrayList a = new ArrayList();
+     *     for (int i = 0; i < 10000; i++) {
+     *         for (int j = 0; j < 20000; j++) {
+     *             a.add(i + j);
+     *         }
+     *     }
+     * }
+     */
+    
+    /**
+     * Optimized version using int[] array instead of ArrayList to avoid
+     * boxing/unboxing overhead and StringBuilder for efficient string building.
+     * This significantly reduces memory allocation and improves performance.
+     */
     public static void tempOptimized() {
         int rows = 10000;
         int cols = 20000;

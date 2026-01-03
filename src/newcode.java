@@ -2,6 +2,19 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+/**
+ * Optimized String Processor
+ * 
+ * This class demonstrates performance optimization through profiling.
+ * The original implementation used string concatenation with += operator
+ * in loops, which created excessive String objects and caused memory issues.
+ * 
+ * Optimizations applied:
+ * 1. Replaced string concatenation (+=) with StringBuilder
+ * 2. Pre-allocated ArrayList capacity to avoid dynamic resizing
+ * 3. Used char arrays for direct character access
+ * 4. Implemented batch processing for better memory locality
+ */
 public class OptimizedStringProcessor {
     private static final int DATA_SIZE = 10000;
     private static final int BATCH_SIZE = 100;
@@ -12,6 +25,18 @@ public class OptimizedStringProcessor {
         System.out.println("Processing completed. Results: " + results.size());
     }
     
+    /**
+     * Optimized version of processData() method.
+     * 
+     * Original implementation issues:
+     * - Used String concatenation with += operator, creating new String objects in each iteration
+     * - ArrayList without initial capacity caused multiple resize operations
+     * 
+     * Optimizations:
+     * - Uses StringBuilder with pre-allocated capacity
+     * - Pre-allocates ArrayList capacity
+     * - Uses char array for direct character access
+     */
     private static List<String> processDataOptimized() {
         List<String> data = generateDataOptimized();
         List<String> results = new ArrayList<>(DATA_SIZE);
@@ -33,6 +58,13 @@ public class OptimizedStringProcessor {
         return results;
     }
     
+    /**
+     * Generates test data with optimizations:
+     * - Pre-allocated ArrayList capacity
+     * - Uses char array instead of String.charAt() for better performance
+     * - Batch processing for improved memory locality
+     * - Pre-allocated StringBuilder capacity
+     */
     private static List<String> generateDataOptimized() {
         List<String> data = new ArrayList<>(DATA_SIZE);
         Random random = new Random();
